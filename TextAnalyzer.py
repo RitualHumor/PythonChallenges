@@ -1,4 +1,8 @@
+#This program with analyze a string and tell you how long it is, how many vowels/consonants it has, 
+#if it has uppercase, lowercase, and/or special characters in it, and what it starts with.
+
 def txt_analyze(input):
+    #Check if our input is appropriate
     if type(input) != str:
         print(
             "Your input was not a string, I am changing it into a string, but note you might have an answer that doesn't make sense. /n    ----------")
@@ -18,6 +22,7 @@ def txt_analyze(input):
     reply3 = "Your string seems to have " + str(bar) + " characters in it (including spaces)."
     reply2Shape = []
 
+    #Counting if its a vowel or consonant
     def counter(character):
         nonlocal ccount
         nonlocal vcount
@@ -26,6 +31,7 @@ def txt_analyze(input):
         elif character in "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ":
             ccount += 1
 
+    #check for uppercase characters
     def characteruppercheck(character):
         if character in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
             nonlocal z
@@ -35,6 +41,7 @@ def txt_analyze(input):
         else:
             return False
 
+    #Check for lowercase characters
     def characterlowercheck(character):
         if character in "abcdefghijklmnopqrstuvwxyz":
             nonlocal z
@@ -44,6 +51,7 @@ def txt_analyze(input):
         else:
             return False
 
+    #Check for non-letters
     def characterothercheck(character):
         if character not in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ":
             nonlocal z
@@ -57,6 +65,7 @@ def txt_analyze(input):
         counter(foo[n])
         n += 1
 
+    #Checks for different character types, but only if that type has not come up yet
     n = 0
     while n < bar:
         if "Upper" not in reply2Shape:
@@ -69,7 +78,6 @@ def txt_analyze(input):
                 continue
         elif "Other" not in reply2Shape:
             zoom = characterothercheck(foo[n])
-
         if zoom == False:
             if "Lower" not in reply2Shape:
                 zoom = characterlowercheck(foo[n])
@@ -78,6 +86,7 @@ def txt_analyze(input):
                     zoom = characterothercheck(foo[n])
         n += 1
 
+    #Sets up telling the user about which characters are in the string
     if z == 0:
         reply2 = "Your string doesn't seem to have any characters at all!"
     elif z == 1:
